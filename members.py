@@ -1,3 +1,5 @@
+import os;
+
 class Member:
     def __init__(self, name, age, GPA):
         self.name = name
@@ -7,7 +9,14 @@ class Member:
         print(f"name: {self.name} | age: {self.age} | GPA: {self.GPA}")
 
 
+default = "\033[0m"
+red = "\033[1;31m"
+yellow = "\033[1;33m"
+green = "\033[1;32m"
 
+#làm sạch terminal
+def clear_terminal():
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 
 #nhap thong tin thanh vien
@@ -27,6 +36,7 @@ def insert(members):
         except ValueError:
             print("ban da nhap sai, hay nhap la so!")
     members.append(Member(name, age, GPA))
+    print(f"{green}Thêm thành công!")
 
 
 
@@ -144,6 +154,7 @@ def display(members):
 
 #
 def menu():
+    print(default)
     print("------------- MENU -------------") 
     print("1. Them thanh vien")  
     print("2. Xoa thanh vien")
@@ -166,18 +177,23 @@ members = []
 while True:
     choice = menu()
     if (choice == 1):
+        clear_terminal()
         print("Lua chon: Them thanh vien")
         insert(members)
     elif (choice == 2):
+        clear_terminal()
         print("Lua chon: Xoa thanh vien")
         deleteWithName(members)
     elif (choice == 3):
+        clear_terminal()
         print("Lua chon: Sap xep thanh vien")
         sort(members)
     elif (choice == 4):
+        clear_terminal()
         print("Lua chon: Hien thi thong tin thanh vien")
         display(members)
     elif (choice == 5):
+        clear_terminal()
         print("Lua chon: thay doi thong tin thanh vien")
         change(members)
     elif (choice == 0):
